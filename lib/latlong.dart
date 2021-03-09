@@ -43,8 +43,6 @@ library latlong;
 import 'dart:math' as math;
 
 import 'package:latlong/spline.dart';
-import 'package:logging/logging.dart';
-import 'package:validate/validate.dart';
 import 'package:intl/intl.dart';
 
 part "latlong/interfaces.dart";
@@ -74,7 +72,6 @@ const double EARTH_RADIUS = EQUATOR_RADIUS;
 /// The PI constant.
 const double PI = math.pi;
 
-
 /// Converts degree to radian
 double degToRadian(final double deg) => deg * (PI / 180.0);
 
@@ -82,8 +79,8 @@ double degToRadian(final double deg) => deg * (PI / 180.0);
 double radianToDeg(final double rad) => rad * (180.0 / PI);
 
 /// Rounds [value] to given number of [decimals]
-double round(final double value, { final int decimals: 6 })
-    => (value * math.pow(10,decimals)).round() / math.pow(10,decimals);
+double round(final double value, {final int decimals: 6}) =>
+    (value * math.pow(10, decimals)).round() / math.pow(10, decimals);
 
 /// Convert a bearing to be within the 0 to +360 degrees range.
 /// Compass bearing is in the rangen 0° ... 360°
@@ -94,25 +91,27 @@ double normalizeBearing(final double bearing) => (bearing + 360) % 360;
 ///     final String sexa1 = decimal2sexagesimal(51.519475);
 ///     expect(sexa1, '51° 31\' 10.11"');
 ///
+///     final String sexa2 = decimal2sexagesimal(-42.883891);
+///     expect(sexa2, '42° 53\' 02.01"');
+///
 String decimal2sexagesimal(final double dec) {
-    List<int> _split(final double value) {
-        // NumberFormat is necessary to create digit after comma if the value
-        // has no decimal point (only necessary for browser)
-        final List<String> tmp = new NumberFormat("0.0#####").format(round(value,decimals: 10)).split('.');
-        return <int>[ int.parse(tmp[0]).abs(), int.parse(tmp[1])];
-    }
+  final buf = new StringBuffer();
 
-    final List<int> parts = _split(dec);
-    final int integerPart = parts[0];
-    final int fractionalPart = parts[1];
+  final double absDec = dec.abs();
+  final int deg = absDec.floor();
+  buf.write(deg.toString() + '°');
 
-    final int deg = integerPart;
-    final double min = double.parse("0.${fractionalPart}") * 60;
+  final double mins = (absDec - deg) * 60.0;
+  final int min = mins.round();
+  buf.write(' ' + zeroPad(min) + "'");
 
-    final List<int> minParts = _split(min);
-    final int minFractionalPart = minParts[1];
+  final double secs = (mins - mins.floorToDouble()) * 60.0;
+  final int sec = secs.round();
+  final int frac = ((secs - secs.floorToDouble()) * 100.0).round();
+  buf.write(' ' + zeroPad(sec) + '.' + zeroPad(frac) + '"');
 
-    final double sec = (double.parse("0.${minFractionalPart}") * 60);
-
-    return "${deg}° ${min.floor()}' ${round(sec,decimals: 2).toStringAsFixed(2)}\"";
+  return buf.toString();
 }
+
+/// Pads a number with a single zero, if it is less than 10
+String zeroPad(num number) => (number < 10 ? '0' : '') + number.toString();
