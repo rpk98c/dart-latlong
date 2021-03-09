@@ -1,6 +1,11 @@
 # Change Log for latlong
 Lightweight library for common latitude and longitude calculation
 
+## [0.7.0]
+
+- Support null safety, forked from the original repo, which is now archived.
+- Address https://github.com/MikeMitterer/dart-latlong/issues/1 and issue 2.
+
 ## [Unreleased](http://github.com/mikemitterer/dart-latlong/compare/v0.6...HEAD)
 
 ### Refactor
