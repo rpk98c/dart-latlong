@@ -1,7 +1,6 @@
-name: latlong
+name: latlong2
 description: Lightweight library for common latitude and longitude calculation
-author: Mike Mitterer <office@mikemitterer.at>
-homepage: https://github.com/MikeMitterer/dart-latlong
+homepage: https://github.com/jifalops/dart-latlong
 
 version: 0.7.0
 
