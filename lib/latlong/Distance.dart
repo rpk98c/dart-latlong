@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-part of latlong;
+part of latlong2;
 
 /// Calculates the distance between points.
 ///
@@ -33,7 +33,7 @@ part of latlong;
 ///      final int meter = distance(new LatLng(52.518611,13.408056),new LatLng(51.519475,7.46694444));
 ///
 class Distance implements DistanceCalculator {
-  // final Logger _logger = new Logger('latlong.Distance');
+  // final Logger _logger = new Logger('latlong2.Distance');
 
   final double _radius;
   final _roundResult;

@@ -17,13 +17,13 @@
  * limitations under the License.
  */
 
-part of latlong;
+part of latlong2;
 
 /// Circle-base GEO algorithms.
 ///
 /// Circle uses by default the Vincenty-Algorithm for distance computations
 class Circle {
-  // final Logger _logger = new Logger('latlong.Circle');
+  // final Logger _logger = new Logger('latlong2.Circle');
 
   final double radius;
   final LatLng center;

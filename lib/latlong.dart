@@ -31,18 +31,18 @@
 ///      // meter = 422592
 ///      final int meter = distance(new LatLng(52.518611,13.408056),new LatLng(51.519475,7.46694444));
 ///
-/// Find more infos on [Movable Type Scripts](http://www.movable-type.co.uk/scripts/latlong.html)
-/// and [Movable Type Scripts - Vincenty](http://www.movable-type.co.uk/scripts/latlong-vincenty.html)
+/// Find more infos on [Movable Type Scripts](http://www.movable-type.co.uk/scripts/latlong2.html)
+/// and [Movable Type Scripts - Vincenty](http://www.movable-type.co.uk/scripts/latlong2-vincenty.html)
 ///
-/// ![LatLong](http://eogn.com/images/newsletter/2014/Latitude-and-longitude.png)
+/// ![latlong2](http://eogn.com/images/newsletter/2014/Latitude-and-longitude.png)
 ///
 /// ![Map](http://www.isobudgets.com/wp-content/uploads/2014/03/latitude-longitude.jpg)
 ///
-library latlong;
+library latlong2;
 
 import 'dart:math' as math;
 
-import 'package:latlong/spline.dart';
+import 'package:latlong2/spline.dart';
 import 'package:intl/intl.dart';
 
 part "latlong/interfaces.dart";

@@ -17,10 +17,10 @@
  * limitations under the License.
  */
 
-part of latlong;
+part of latlong2;
 
 class Haversine implements DistanceCalculator {
-  // final Logger _logger = new Logger('latlong.Haversine');
+  // final Logger _logger = new Logger('latlong2.Haversine');
 
   const Haversine();
 

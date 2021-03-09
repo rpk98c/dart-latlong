@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-part of latlong;
+part of latlong2;
 
 /// Necessary for creating new instances T extends LatLng (Path<T extends LatLng>)
 ///

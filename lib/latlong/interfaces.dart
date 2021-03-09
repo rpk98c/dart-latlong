@@ -17,7 +17,7 @@
  * limitations under the License.
  */
 
-part of latlong;
+part of latlong2;
 
 abstract class DistanceCalculator {
   double distance(final LatLng p1, final LatLng p2);
