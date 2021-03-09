@@ -45,41 +45,41 @@ import 'dart:math' as math;
 import 'package:latlong2/spline.dart';
 import 'package:intl/intl.dart';
 
-part "latlong/interfaces.dart";
+part 'latlong/interfaces.dart';
 
 part 'latlong/calculator/Haversine.dart';
 part 'latlong/calculator/Vincenty.dart';
 
-part "latlong/Distance.dart";
-part "latlong/LatLng.dart";
-part "latlong/LengthUnit.dart";
+part 'latlong/Distance.dart';
+part 'latlong/LatLng.dart';
+part 'latlong/LengthUnit.dart';
 
-part "latlong/Path.dart";
-part "latlong/Circle.dart";
+part 'latlong/Path.dart';
+part 'latlong/Circle.dart';
 
 /// Equator radius in meter (WGS84 ellipsoid)
-const double EQUATOR_RADIUS = 6378137.0;
+const double equatorRadius = 6378137.0;
 
 /// Polar radius in meter (WGS84 ellipsoid)
-const double POLAR_RADIUS = 6356752.314245;
+const double polarRadius = 6356752.314245;
 
 /// WGS84
-const double FLATTENING = 1 / 298.257223563;
+const double flattening = 1 / 298.257223563;
 
 /// Earth radius in meter
-const double EARTH_RADIUS = EQUATOR_RADIUS;
+const double earthRadius = equatorRadius;
 
 /// The PI constant.
-const double PI = math.pi;
+const double pi = math.pi;
 
 /// Converts degree to radian
-double degToRadian(final double deg) => deg * (PI / 180.0);
+double degToRadian(final double deg) => deg * (pi / 180.0);
 
 /// Radian to degree
-double radianToDeg(final double rad) => rad * (180.0 / PI);
+double radianToDeg(final double rad) => rad * (180.0 / pi);
 
 /// Rounds [value] to given number of [decimals]
-double round(final double value, {final int decimals: 6}) =>
+double round(final double value, {final int decimals = 6}) =>
     (value * math.pow(10, decimals)).round() / math.pow(10, decimals);
 
 /// Convert a bearing to be within the 0 to +360 degrees range.
@@ -95,19 +95,19 @@ double normalizeBearing(final double bearing) => (bearing + 360) % 360;
 ///     expect(sexa2, '42° 53\' 02.01"');
 ///
 String decimal2sexagesimal(final double dec) {
-  final buf = new StringBuffer();
+  final buf = StringBuffer();
 
-  final double absDec = dec.abs();
-  final int deg = absDec.floor();
+  final absDec = dec.abs();
+  final deg = absDec.floor();
   buf.write(deg.toString() + '°');
 
-  final double mins = (absDec - deg) * 60.0;
-  final int min = mins.round();
+  final mins = (absDec - deg) * 60.0;
+  final min = mins.round();
   buf.write(' ' + zeroPad(min) + "'");
 
-  final double secs = (mins - mins.floorToDouble()) * 60.0;
-  final int sec = secs.round();
-  final int frac = ((secs - secs.floorToDouble()) * 100.0).round();
+  final secs = (mins - mins.floorToDouble()) * 60.0;
+  final sec = secs.round();
+  final frac = ((secs - secs.floorToDouble()) * 100.0).round();
   buf.write(' ' + zeroPad(sec) + '.' + zeroPad(frac) + '"');
 
   return buf.toString();

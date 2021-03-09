@@ -10,7 +10,7 @@ import 'package:latlong2/latlong.dart';
 // Commandline
 // import "package:console_log_handler/print_log_handler.dart";
 
-main() async {
+void main() async {
   // final Logger _logger = new Logger("test.LengthUnit");
   // configLogging();
 
@@ -42,7 +42,8 @@ main() async {
     }); // end of 'Kilometer' test
 
     test('> Mike', () {
-      expect((LengthUnit.Mile.to(LengthUnit.Meter, 1.0) * 100).round() / 100, 1609.34);
+      expect((LengthUnit.Mile.to(LengthUnit.Meter, 1.0) * 100).round() / 100,
+          1609.34);
     }); // end of 'Mike' test
   });
   // End of 'LengthUnit' group

@@ -48,7 +48,8 @@ class CatmullRomSpline extends CatmullRom<double> {
   @override
   double position(final double distance) {
     if (distance < 0 || distance > 1) {
-      throw ArgumentError.value(distance, 'distance', 'Distance must be beteen 0 and 1.');
+      throw ArgumentError.value(
+          distance, 'distance', 'Distance must be beteen 0 and 1.');
     }
 
     return 0.5 *
@@ -76,10 +77,12 @@ class CatmullRomSpline2D<T extends num> extends CatmullRom<Point2D> {
   @override
   Point2D position(final double distance) {
     if (distance < 0 || distance > 1) {
-      throw ArgumentError.value(distance, 'distance', 'Distance must be beteen 0 and 1.');
+      throw ArgumentError.value(
+          distance, 'distance', 'Distance must be beteen 0 and 1.');
     }
 
-    return new Point2D(new CatmullRomSpline(_p0.x, _p1.x, _p2.x, _p3.x).position(distance),
-        new CatmullRomSpline(_p0.y, _p1.y, _p2.y, _p3.y).position(distance));
+    return Point2D(
+        CatmullRomSpline(_p0.x, _p1.x, _p2.x, _p3.x).position(distance),
+        CatmullRomSpline(_p0.y, _p1.y, _p2.y, _p3.y).position(distance));
   }
 }

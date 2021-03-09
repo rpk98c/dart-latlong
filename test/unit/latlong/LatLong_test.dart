@@ -27,7 +27,7 @@ import 'package:latlong2/latlong.dart';
 // Commandline
 // import "package:console_log_handler/print_log_handler.dart";
 
-main() {
+void main() {
   // final Logger _logger = new Logger("test.LatLng");
   // configLogging();
 
@@ -35,32 +35,34 @@ main() {
     setUp(() {});
 
     test('> Range', () {
-      expect(() => new LatLng(-80.0, 0.0), returnsNormally);
-      expect(() => new LatLng(-100.0, 0.0), throwsArgumentError);
-      expect(() => new LatLng(80.0, 0.0), returnsNormally);
-      expect(() => new LatLng(100.0, 0.0), throwsArgumentError);
-      expect(() => new LatLng(0.0, -170.0), returnsNormally);
-      expect(() => new LatLng(0.0, -190.0), throwsArgumentError);
-      expect(() => new LatLng(0.0, 170.0), returnsNormally);
-      expect(() => new LatLng(0.0, 190.0), throwsArgumentError);
+      expect(() => LatLng(-80.0, 0.0), returnsNormally);
+      expect(() => LatLng(-100.0, 0.0), throwsArgumentError);
+      expect(() => LatLng(80.0, 0.0), returnsNormally);
+      expect(() => LatLng(100.0, 0.0), throwsArgumentError);
+      expect(() => LatLng(0.0, -170.0), returnsNormally);
+      expect(() => LatLng(0.0, -190.0), throwsArgumentError);
+      expect(() => LatLng(0.0, 170.0), returnsNormally);
+      expect(() => LatLng(0.0, 190.0), throwsArgumentError);
     }); // end of 'Range' test
 
     test('> Rad', () {
-      expect((new LatLng(-80.0, 0.0)).latitudeInRad, -1.3962634015954636);
-      expect((new LatLng(90.0, 0.0)).latitudeInRad, 1.5707963267948966);
-      expect((new LatLng(0.0, 80.0)).longitudeInRad, 1.3962634015954636);
-      expect((new LatLng(0.0, 90.0)).longitudeInRad, 1.5707963267948966);
+      expect((LatLng(-80.0, 0.0)).latitudeInRad, -1.3962634015954636);
+      expect((LatLng(90.0, 0.0)).latitudeInRad, 1.5707963267948966);
+      expect((LatLng(0.0, 80.0)).longitudeInRad, 1.3962634015954636);
+      expect((LatLng(0.0, 90.0)).longitudeInRad, 1.5707963267948966);
     }); // end of 'Rad' test
 
     test('> toString', () {
-      expect((new LatLng(-80.0, 0.0)).toString(), "LatLng(latitude:-80.0, longitude:0.0)");
-      expect((new LatLng(-80.123456, 0.0)).toString(), "LatLng(latitude:-80.123456, longitude:0.0)");
+      expect((LatLng(-80.0, 0.0)).toString(),
+          'LatLng(latitude:-80.0, longitude:0.0)');
+      expect((LatLng(-80.123456, 0.0)).toString(),
+          'LatLng(latitude:-80.123456, longitude:0.0)');
     }); // end of 'toString' test
 
     test('> equal', () {
-      expect(new LatLng(-80.0, 0.0), new LatLng(-80.0, 0.0));
-      expect(new LatLng(-80.0, 0.0), isNot(new LatLng(-80.1, 0.0)));
-      expect(new LatLng(-80.0, 0.0), isNot(new LatLng(0.0, 80.0)));
+      expect(LatLng(-80.0, 0.0), LatLng(-80.0, 0.0));
+      expect(LatLng(-80.0, 0.0), isNot(LatLng(-80.1, 0.0)));
+      expect(LatLng(-80.0, 0.0), isNot(LatLng(0.0, 80.0)));
     }); // end of 'equal' test
   });
 }

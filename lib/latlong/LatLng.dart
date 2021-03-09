@@ -31,24 +31,28 @@ class LatLng {
 
   LatLng(this._latitude, this._longitude) {
     if (_latitude < -90 || _latitude > 90) {
-      throw ArgumentError.value(_latitude, '_latitude', 'Latitude must be between -90 and 90 degrees');
+      throw ArgumentError.value(_latitude, '_latitude',
+          'Latitude must be between -90 and 90 degrees');
     } else if (_longitude < -180 || _longitude > 180) {
-      throw ArgumentError.value(_longitude, '_longitude', 'Longitude must be between -180 and 180 degrees');
+      throw ArgumentError.value(_longitude, '_longitude',
+          'Longitude must be between -180 and 180 degrees');
     }
   }
 
-  void set latitude(final double value) {
+  set latitude(final double value) {
     if (value < -90 || value > 90) {
-      throw ArgumentError.value(value, 'value', 'Latitude must be between -90 and 90 degrees');
+      throw ArgumentError.value(
+          value, 'value', 'Latitude must be between -90 and 90 degrees');
     }
     _latitude = value;
   }
 
   double get latitude => _latitude;
 
-  void set longitude(final double value) {
+  set longitude(final double value) {
     if (value < -180 || value > 180) {
-      throw ArgumentError.value(value, 'value', 'Longitude must be between -180 and 180 degrees');
+      throw ArgumentError.value(
+          value, 'value', 'Longitude must be between -180 and 180 degrees');
     }
     _longitude = value;
   }
@@ -59,8 +63,10 @@ class LatLng {
 
   double get longitudeInRad => degToRadian(_longitude);
 
-  String toString() => 'LatLng(latitude:${new NumberFormat("0.0#####").format(latitude)}, '
-      'longitude:${new NumberFormat("0.0#####").format(longitude)})';
+  @override
+  String toString() =>
+      'LatLng(latitude:${NumberFormat("0.0#####").format(latitude)}, '
+      'longitude:${NumberFormat("0.0#####").format(longitude)})';
 
   /// Converts lat/long values into sexagesimal
   ///
@@ -70,21 +76,27 @@ class LatLng {
   ///     print(p1..toSexagesimal());
   ///
   String toSexagesimal() {
-    String latDirection = latitude >= 0 ? "N" : "S";
-    String lonDirection = longitude >= 0 ? "E" : "W";
-    return "${decimal2sexagesimal(latitude)} ${latDirection}, ${decimal2sexagesimal(longitude)} ${lonDirection}";
+    var latDirection = latitude >= 0 ? 'N' : 'S';
+    var lonDirection = longitude >= 0 ? 'E' : 'W';
+    return '${decimal2sexagesimal(latitude)} $latDirection, ${decimal2sexagesimal(longitude)} $lonDirection';
   }
 
+  @override
   int get hashCode => latitude.hashCode + longitude.hashCode;
 
-  bool operator ==(final Object other) => other is LatLng && latitude == other.latitude && longitude == other.longitude;
+  @override
+  bool operator ==(final Object other) =>
+      other is LatLng &&
+      latitude == other.latitude &&
+      longitude == other.longitude;
 
-  LatLng round({final int decimals: 6}) =>
-      new LatLng(_round(latitude, decimals: decimals), _round(longitude, decimals: decimals));
+  LatLng round({final int decimals = 6}) => LatLng(
+      _round(latitude, decimals: decimals),
+      _round(longitude, decimals: decimals));
 
   //- private -----------------------------------------------------------------------------------
 
   /// No qualifier for top level functions in Dart. Had to copy this function
-  double _round(final double value, {final int decimals: 6}) =>
+  double _round(final double value, {final int decimals = 6}) =>
       (value * math.pow(10, decimals)).round() / math.pow(10, decimals);
 }

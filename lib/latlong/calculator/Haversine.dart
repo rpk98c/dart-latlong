@@ -34,10 +34,14 @@ class Haversine implements DistanceCalculator {
     final sinDLng = math.sin((p2.longitudeInRad - p1.longitudeInRad) / 2);
 
     // Sides
-    final a = sinDLat * sinDLat + sinDLng * sinDLng * math.cos(p1.latitudeInRad) * math.cos(p2.latitudeInRad);
+    final a = sinDLat * sinDLat +
+        sinDLng *
+            sinDLng *
+            math.cos(p1.latitudeInRad) *
+            math.cos(p2.latitudeInRad);
     final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
 
-    return EQUATOR_RADIUS * c;
+    return equatorRadius * c;
   }
 
   /// Returns a destination point based on the given [distance] and [bearing]
@@ -54,23 +58,25 @@ class Haversine implements DistanceCalculator {
   ///     final p2 = distance.offset(p1, distanceInMeter, 180);
   ///
   @override
-  LatLng offset(final LatLng from, final double distanceInMeter, final double bearing) {
+  LatLng offset(
+      final LatLng from, final double distanceInMeter, final double bearing) {
     if (bearing < -180 || bearing > 180) {
-      throw ArgumentError.value(bearing, 'bearing', 'Angle must be between -180 and 180 degrees');
+      throw ArgumentError.value(
+          bearing, 'bearing', 'Angle must be between -180 and 180 degrees');
     }
 
-    final double h = degToRadian(bearing.toDouble());
+    final h = degToRadian(bearing.toDouble());
 
-    final double a = distanceInMeter / EQUATOR_RADIUS;
+    final a = distanceInMeter / equatorRadius;
 
-    final double lat2 = math
-        .asin(math.sin(from.latitudeInRad) * math.cos(a) + math.cos(from.latitudeInRad) * math.sin(a) * math.cos(h));
+    final lat2 = math.asin(math.sin(from.latitudeInRad) * math.cos(a) +
+        math.cos(from.latitudeInRad) * math.sin(a) * math.cos(h));
 
-    final double lng2 = from.longitudeInRad +
+    final lng2 = from.longitudeInRad +
         math.atan2(math.sin(h) * math.sin(a) * math.cos(from.latitudeInRad),
             math.cos(a) - math.sin(from.latitudeInRad) * math.sin(lat2));
 
-    return new LatLng(radianToDeg(lat2), radianToDeg(lng2));
+    return LatLng(radianToDeg(lat2), radianToDeg(lng2));
   }
 
   //- private -----------------------------------------------------------------------------------

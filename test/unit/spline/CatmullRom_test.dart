@@ -9,7 +9,7 @@ import 'package:latlong2/spline.dart';
 // Commandline
 // import "package:console_log_handler/print_log_handler.dart";
 
-main() async {
+void main() async {
   // final Logger _logger = new Logger("test.CatmullRom");
   // configLogging();
 
@@ -17,7 +17,7 @@ main() async {
     setUp(() {});
 
     test('> one dimension', () {
-      final CatmullRomSpline spline = new CatmullRomSpline(1, 2, 2, 1);
+      final spline = CatmullRomSpline(1, 2, 2, 1);
 
       expect(spline.position(0.25), 2.09375);
       expect(spline.position(0.5), 2.125);
@@ -25,7 +25,7 @@ main() async {
     }); // end of 'one dimension' test
 
     test('> no endpoints', () {
-      final CatmullRomSpline spline = new CatmullRomSpline.noEndpoints(1, 2);
+      final spline = CatmullRomSpline.noEndpoints(1, 2);
 
       expect(spline.position(0.25), 1.203125);
       expect(spline.position(0.5), 1.5);
@@ -38,8 +38,8 @@ main() async {
 
   group('CatmullRom 2D', () {
     test('> Simple values', () {
-      final CatmullRomSpline2D spline =
-          new CatmullRomSpline2D(new Point2D(1, 1), new Point2D(2, 2), new Point2D(2, 2), new Point2D(1, 1));
+      final spline = CatmullRomSpline2D(
+          Point2D(1, 1), Point2D(2, 2), Point2D(2, 2), Point2D(1, 1));
 
       expect(spline.position(0.25).x, 2.09375);
       expect(spline.position(0.25).y, 2.09375);
@@ -54,14 +54,16 @@ main() async {
     });
 
     test('> no Endpoints', () {
-      final CatmullRomSpline2D spline = new CatmullRomSpline2D.noEndpoints(new Point2D(1, 1), new Point2D(2, 2));
+      final spline =
+          CatmullRomSpline2D.noEndpoints(Point2D(1, 1), Point2D(2, 2));
 
       expect(spline.position(0.25).x, 1.203125);
       expect(spline.position(0.25).y, 1.203125);
     }); // end of 'no Endpoints' test
 
     test('> Exception', () {
-      final CatmullRomSpline2D spline = new CatmullRomSpline2D.noEndpoints(new Point2D(1, 1), new Point2D(2, 2));
+      final spline =
+          CatmullRomSpline2D.noEndpoints(Point2D(1, 1), Point2D(2, 2));
 
       expect(() => spline.position(3.0).x, throwsArgumentError);
     }); // end of 'Exception' test

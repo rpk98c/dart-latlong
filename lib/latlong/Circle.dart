@@ -29,7 +29,8 @@ class Circle {
   final LatLng center;
   final DistanceCalculator _calculator;
 
-  Circle(final LatLng this.center, this.radius, {final DistanceCalculator calculator: const Vincenty()})
+  Circle(final this.center, this.radius,
+      {final DistanceCalculator calculator = const Vincenty()})
       : _calculator = calculator;
 
   /// Checks if a [point] is inside the given [Circle]
@@ -44,9 +45,9 @@ class Circle {
   ///     expect(circle2.isPointInside(newPos),isFalse);
   ///
   bool isPointInside(final LatLng point) {
-    final Distance distance = new Distance(calculator: _calculator);
+    final distance = Distance(calculator: _calculator);
 
-    final double dist = distance(center, point);
+    final dist = distance(center, point);
     return dist <= radius;
   }
 
