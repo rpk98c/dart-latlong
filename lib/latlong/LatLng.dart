@@ -30,30 +30,30 @@ class LatLng {
   double _longitude;
 
   LatLng(this._latitude, this._longitude) {
-    if (_latitude < -90 || _latitude > 90) {
-      throw ArgumentError.value(_latitude, '_latitude',
-          'Latitude must be between -90 and 90 degrees');
-    } else if (_longitude < -180 || _longitude > 180) {
-      throw ArgumentError.value(_longitude, '_longitude',
-          'Longitude must be between -180 and 180 degrees');
-    }
+    // if (_latitude < -90 || _latitude > 90) {
+    //   throw ArgumentError.value(_latitude, '_latitude',
+    //       'Latitude must be between -90 and 90 degrees');
+    // } else if (_longitude < -180 || _longitude > 180) {
+    //   throw ArgumentError.value(_longitude, '_longitude',
+    //       'Longitude must be between -180 and 180 degrees');
+    // }
   }
 
   set latitude(final double value) {
-    if (value < -90 || value > 90) {
-      throw ArgumentError.value(
-          value, 'value', 'Latitude must be between -90 and 90 degrees');
-    }
+    // if (value < -90 || value > 90) {
+    //   throw ArgumentError.value(
+    //       value, 'value', 'Latitude must be between -90 and 90 degrees');
+    // }
     _latitude = value;
   }
 
   double get latitude => _latitude;
 
   set longitude(final double value) {
-    if (value < -180 || value > 180) {
-      throw ArgumentError.value(
-          value, 'value', 'Longitude must be between -180 and 180 degrees');
-    }
+    // if (value < -180 || value > 180) {
+    //   throw ArgumentError.value(
+    //       value, 'value', 'Longitude must be between -180 and 180 degrees');
+    // }
     _longitude = value;
   }
 
